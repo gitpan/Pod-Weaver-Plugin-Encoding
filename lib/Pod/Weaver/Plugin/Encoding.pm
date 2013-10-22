@@ -2,8 +2,8 @@ package Pod::Weaver::Plugin::Encoding;
 BEGIN {
   $Pod::Weaver::Plugin::Encoding::AUTHORITY = 'cpan:FLORA';
 }
-BEGIN {
-  $Pod::Weaver::Plugin::Encoding::VERSION = '0.01';
+{
+  $Pod::Weaver::Plugin::Encoding::VERSION = '0.02';
 }
 # ABSTRACT: Add an encoding command to your POD
 
@@ -21,7 +21,7 @@ with 'Pod::Weaver::Role::Finalizer';
 has encoding => (
     is      => 'ro',
     isa     => Str,
-    default => 'utf-8',
+    default => 'UTF-8',
 );
 
 
@@ -53,7 +53,10 @@ __PACKAGE__->meta->make_immutable;
 1;
 
 __END__
+
 =pod
+
+=encoding utf-8
 
 =head1 NAME
 
@@ -68,13 +71,13 @@ In your weaver.ini:
 or
 
   [-Encoding]
-  encoding = kio8-r
+  encoding = koi8-r
 
 =head1 DESCRIPTION
 
 This section will add an C<=encoding> command like
 
-  =encoding utf-8
+  =encoding UTF-8
 
 to your POD.
 
@@ -83,7 +86,7 @@ to your POD.
 =head2 encoding
 
 The encoding to declare in the C<=encoding> command. Defaults to
-C<utf-8>.
+C<UTF-8>.
 
 =head1 METHODS
 
@@ -96,20 +99,29 @@ Does nothing if the document already has an C<=encoding> command.
 
 =head1 SEE ALSO
 
-L<Pod::Weaver::Plugin::Encoding> is very similar to this module, but
+L<Pod::Weaver::Section::Encoding> is very similar to this module, but
 expects the encoding to be specified in a special comment within the
 document that's being woven.
 
-=head1 AUTHOR
+=head1 AUTHORS
+
+=over 4
+
+=item *
 
 Florian Ragwitz <rafl@debian.org>
 
+=item *
+
+Sergey Romanov <sromanov@cpan.org>
+
+=back
+
 =head1 COPYRIGHT AND LICENSE
 
-This software is copyright (c) 2010 by Florian Ragwitz.
+This software is copyright (c) 2013 by Florian Ragwitz.
 
 This is free software; you can redistribute it and/or modify it under
 the same terms as the Perl 5 programming language system itself.
 
 =cut
-
